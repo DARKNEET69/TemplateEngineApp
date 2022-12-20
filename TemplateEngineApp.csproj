@@ -7,6 +7,11 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>TEA</AssemblyName>
+    <ApplicationIcon>Resources\tea-icon.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\tea-icon.ico" />
+  </ItemGroup>
 
 </Project>
