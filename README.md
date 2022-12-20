@@ -1,2 +1,2 @@
-# ![tea-icon](https://user-images.githubusercontent.com/63448832/208738301-f21392f2-d48f-4c3a-a010-062760cbaf24.png) Template Engine App
+# ![tea](https://user-images.githubusercontent.com/63448832/208745193-99ccde9b-afb1-424b-832f-b8f1f69f0921.png) Template Engine App
 TEA is a GUI template engine
