@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fierc\\OneDrive\\Рабочий стол\\PROJECTS\\TemplateEngineApp\\TemplateEngineApp.csproj",
-      "projectName": "TemplateEngineApp",
-      "projectPath": "C:\\Users\\fierc\\OneDrive\\Рабочий стол\\PROJECTS\\TemplateEngineApp\\TemplateEngineApp.csproj",
+      "projectUniqueName": "C:\\Users\\fierc\\OneDrive\\Рабочий стол\\PROJECTS\\GitHub\\TemplateEngineApp\\TemplateEngineApp.csproj",
+      "projectName": "TEA",
+      "projectPath": "C:\\Users\\fierc\\OneDrive\\Рабочий стол\\PROJECTS\\GitHub\\TemplateEngineApp\\TemplateEngineApp.csproj",
       "packagesPath": "C:\\Users\\fierc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fierc\\OneDrive\\Рабочий стол\\PROJECTS\\TemplateEngineApp\\obj\\",
+      "outputPath": "C:\\Users\\fierc\\OneDrive\\Рабочий стол\\PROJECTS\\GitHub\\TemplateEngineApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\fierc\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "TemplateEngineApp/1.0.0": {
+      "TEA/1.0.0": {
         "runtime": {
-          "TemplateEngineApp.dll": {}
+          "TEA.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "TemplateEngineApp/1.0.0": {
+    "TEA/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
