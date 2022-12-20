@@ -1,0 +1,17 @@
+C:\Users\fierc\OneDrive\Рабочий стол\PROJECTS\TemplateEngineApp\bin\Release\net6.0-windows\TemplateEngineApp.exe
+C:\Users\fierc\OneDrive\Рабочий стол\PROJECTS\TemplateEngineApp\bin\Release\net6.0-windows\TemplateEngineApp.deps.json
+C:\Users\fierc\OneDrive\Рабочий стол\PROJECTS\TemplateEngineApp\bin\Release\net6.0-windows\TemplateEngineApp.runtimeconfig.json
+C:\Users\fierc\OneDrive\Рабочий стол\PROJECTS\TemplateEngineApp\bin\Release\net6.0-windows\TemplateEngineApp.dll
+C:\Users\fierc\OneDrive\Рабочий стол\PROJECTS\TemplateEngineApp\bin\Release\net6.0-windows\TemplateEngineApp.pdb
+C:\Users\fierc\OneDrive\Рабочий стол\PROJECTS\TemplateEngineApp\obj\Release\net6.0-windows\TemplateEngineApp.csproj.AssemblyReference.cache
+C:\Users\fierc\OneDrive\Рабочий стол\PROJECTS\TemplateEngineApp\obj\Release\net6.0-windows\TemplateEngineApp.MainForm.resources
+C:\Users\fierc\OneDrive\Рабочий стол\PROJECTS\TemplateEngineApp\obj\Release\net6.0-windows\TemplateEngineApp.csproj.GenerateResource.cache
+C:\Users\fierc\OneDrive\Рабочий стол\PROJECTS\TemplateEngineApp\obj\Release\net6.0-windows\TemplateEngineApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fierc\OneDrive\Рабочий стол\PROJECTS\TemplateEngineApp\obj\Release\net6.0-windows\TemplateEngineApp.AssemblyInfoInputs.cache
+C:\Users\fierc\OneDrive\Рабочий стол\PROJECTS\TemplateEngineApp\obj\Release\net6.0-windows\TemplateEngineApp.AssemblyInfo.cs
+C:\Users\fierc\OneDrive\Рабочий стол\PROJECTS\TemplateEngineApp\obj\Release\net6.0-windows\TemplateEngineApp.csproj.CoreCompileInputs.cache
+C:\Users\fierc\OneDrive\Рабочий стол\PROJECTS\TemplateEngineApp\obj\Release\net6.0-windows\TemplateEngineApp.dll
+C:\Users\fierc\OneDrive\Рабочий стол\PROJECTS\TemplateEngineApp\obj\Release\net6.0-windows\refint\TemplateEngineApp.dll
+C:\Users\fierc\OneDrive\Рабочий стол\PROJECTS\TemplateEngineApp\obj\Release\net6.0-windows\TemplateEngineApp.pdb
+C:\Users\fierc\OneDrive\Рабочий стол\PROJECTS\TemplateEngineApp\obj\Release\net6.0-windows\TemplateEngineApp.genruntimeconfig.cache
+C:\Users\fierc\OneDrive\Рабочий стол\PROJECTS\TemplateEngineApp\obj\Release\net6.0-windows\ref\TemplateEngineApp.dll
