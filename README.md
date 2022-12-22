@@ -8,7 +8,7 @@
 
 ## Quick start
 
-* Download the latest version of the app [here](https://github.com/DARKNEET69/TemplateEngineApp/releases/tag/0.0.1).
+* [Download](https://github.com/DARKNEET69/TemplateEngineApp/releases/tag/0.0.1) the latest version of the app.
 * Launch the app.
 * Click the `Create project` button to create a project folder or the `Open project` button if this folder already exists.
 
