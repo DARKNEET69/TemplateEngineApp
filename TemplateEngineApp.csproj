@@ -8,6 +8,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>TEA</AssemblyName>
     <ApplicationIcon>Resources\tea-icon.ico</ApplicationIcon>
+    <StartupObject>TemplateEngineApp.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
