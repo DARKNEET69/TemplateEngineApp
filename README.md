@@ -16,8 +16,8 @@
   > In the "Templates/" folder you should store your `templates`. Templates can contain `any html text` or an insertion block of another template.
   > In the "Workspace/" folder you should store your files using `templates`. To make the program understand that you want to use a template, use the `template insertion block` (by default `[[...]]`, where instead of "..." you need to insert a link to a template inside the project, for example "Templates/head.html") in the right place of your text.
   
-* If you have changed the settings in the application and want to save them, click the `Save settings` button. All personal settings of the application will be saved in `Template Settings.json`.
-* Click the `Generate` button to generate the website files in the "Website/" folder.
+* If you have changed the settings in the application and want to save them, click `Save settings` button. All personal settings of the application will be saved in `Template Settings.json`.
+* Click `Generate` button to generate the website files in the "Website/" folder.
 
 ***
 
