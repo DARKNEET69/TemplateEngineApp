@@ -4,7 +4,7 @@
 
 ## What is TEA?
 
-`TEA` is a desktop `template engine` with `GUI`. TEA is focused on the separation of working files and files that will get to the host. In particular, TEA is great for generating `static websites`.
+`TEA` is a `template engine` with `GUI`. TEA is focused on the separation of working files and files that will get to the host. In particular, TEA is great for generating `static websites`.
 
 ## Quick start
 
