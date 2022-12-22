@@ -10,7 +10,7 @@
 
 * [Download](https://github.com/DARKNEET69/TemplateEngineApp/releases/tag/0.0.1) the latest version of the app.
 * Launch the app.
-* Click the `Create project` button to create a project folder or the `Open project` button if this folder already exists.
+* Click `Create project` button to create a project folder or `Open project` button if this folder already exists.
 
   > Please note that the project must contain `projects folders`: "Templates/", "Website/", "Workspace/" and the file "TemplateSettings.json".
   > In the "Templates/" folder you should store your `templates`. Templates can contain `any html text` or an insertion block of another template.
