@@ -60,7 +60,7 @@ If you just want to insert a template, use the construction [[_template_link_]] 
 </html>
 ```
 
-If you need to insert parameters, use the construction [[_template_link_, _parameter_name_ = _value_]] in the working file and {{_parameter_name_ }} in the template file:
+If you need to insert parameters, use the construction [[_template_link_, _parameter_name_ = _value_]] in the working file and {{_parameter_name_}} in the template file:
 
 ```html
 // Workspace/index.html
