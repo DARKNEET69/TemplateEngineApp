@@ -13,12 +13,126 @@
 * Click `Create project` button to create a project folder or `Open project` button if this folder already exists.
 
   > Please note that the project must contain `projects folders`: "Templates/", "Website/", "Workspace/" and the file "TemplateSettings.json".
-  > In the "Templates/" folder you should store your `templates`. Templates can contain `any html text` or an insertion block of another template.
-  > In the "Workspace/" folder you should store your files using `templates`. To make the program understand that you want to use a template, use the `template insertion block` (by default `[[...]]`, where instead of "..." you need to insert a link to a template inside the project, for example "Templates/head.html") in the right place of your text.
+  > In the "Templates/" folder you should store your `templates`. Templates can contain `any html text` or an inline block of another template.
+  > In the "Workspace/" folder you should store your files using `templates`.
   
 * If you have changed the settings in the application and want to save them, click `Save settings` button. All personal settings of the application will be saved in `Template Settings.json`.
 * Click `Generate` button to generate the website files in the "Website/" folder.
 
+## Syntax
+
+Since users can change the pointers of inline blocks, we will analyze only the default pointers.
+
+If you just want to insert a template, use the construction [[_template_link_]] in the working file and any text in the template file:
+
+```html
+// Workspace/index.html
+<html>
+    <head>
+        [[Templates/head.html]]
+        <meta name="description" content="TEA releases">  
+        <meta property="og:title" content="TEA releases">  
+        <meta property="og:url" content="https://github.com/DARKNEET69/TemplateEngineApp/releases">
+    </head>
+</html>
+```
+```html
+// Templates/head.html
+<meta charset="utf-8">
+<title> TEA WEBSITE </title>
+<meta name="theme-color" content="#b4c290">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TEA WEBSITE">
+```
+```html
+// After generation, the "Website/" folder will appear index.html
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> TEA WEBSITE </title>
+        <meta name="theme-color" content="#b4c290">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="TEA WEBSITE">
+        <meta name="description" content="TEA releases">  
+        <meta property="og:title" content="TEA releases">  
+        <meta property="og:url" content="https://github.com/DARKNEET69/TemplateEngineApp/releases">
+    </head>
+</html>
+```
+
+If you need to insert parameters, use the construction [[_template_link_, _parameter_name_ = _value_]] in the working file and {{_parameter_name_ }} in the template file:
+
+```html
+// Workspace/index.html
+<html>
+    <head>
+        [[Templates/head.html, description = "TEA releases", url = "https://github.com/DARKNEET69/TemplateEngineApp/releases"]] 
+    </head>
+</html>
+```
+```html
+// Templates/head.html
+<meta charset="utf-8">
+<title> TEA WEBSITE </title>
+<meta name="theme-color" content="#b4c290">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TEA WEBSITE">
+<meta name="description" content={{description}}>  
+<meta property="og:title" content={{description}}>  
+<meta property="og:url" content={{url}}>
+```
+```html
+// After generation, the "Website/" folder will appear index.html
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> TEA WEBSITE </title>
+        <meta name="theme-color" content="#b4c290">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="TEA WEBSITE">
+        <meta name="description" content="TEA releases">  
+        <meta property="og:title" content="TEA releases">  
+        <meta property="og:url" content="https://github.com/DARKNEET69/TemplateEngineApp/releases">
+    </head>
+</html>
+```
+
+You can also declare the default value of a parameter in the template using the construction {{_parameter_name_ = _value_}}. The default value will be used when inlining the template, if the parameter is not specified:
+
+```html
+// Workspace/index.html
+<html>
+    <head>
+        [[Templates/head.html]] 
+    </head>
+</html>
+```
+```html
+// Templates/head.html
+<meta charset="utf-8">
+<title> TEA WEBSITE </title>
+<meta name="theme-color" content="#b4c290">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TEA WEBSITE">
+<meta name="description" content={{description = "TEA"}}>  
+<meta property="og:title" content={{description = "TEA"}}>  
+<meta property="og:url" content={{url = "https://github.com/DARKNEET69/TemplateEngineApp"}}>
+```
+```html
+// After generation, the "Website/" folder will appear index.html
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> TEA WEBSITE </title>
+        <meta name="theme-color" content="#b4c290">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="TEA WEBSITE">
+        <meta name="description" content="TEA">  
+        <meta property="og:title" content="TEA">  
+        <meta property="og:url" content="https://github.com/DARKNEET69/TemplateEngineApp">
+    </head>
+</html>
+```
 ***
 
 <p align="center">
