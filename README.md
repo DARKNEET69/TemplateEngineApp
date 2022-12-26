@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://github.com/DARKNEET69/TemplateEngineApp/releases/tag/0.0.1"><img src="https://user-images.githubusercontent.com/63448832/209059349-e2667f40-7a14-4183-a0e7-344d7be6df35.png" width="500"/></a>
+    <a href="https://github.com/DARKNEET69/TemplateEngineApp/releases/tag/0.1.0"><img src="https://user-images.githubusercontent.com/63448832/209059349-e2667f40-7a14-4183-a0e7-344d7be6df35.png" width="500"/></a>
 </p>
 
 ## What is TEA?
@@ -8,7 +8,7 @@
 
 ## Quick start
 
-* [Download](https://github.com/DARKNEET69/TemplateEngineApp/releases/tag/0.0.1) the latest version of the app.
+* [Download](https://github.com/DARKNEET69/TemplateEngineApp/releases/tag/0.1.0) the latest version of the app.
 * Launch the app.
 * Click `Create project` button to create a project folder or `Open project` button if this folder already exists.
 
@@ -136,7 +136,7 @@ You can also declare the default value of a parameter in the template using the 
 ***
 
 <p align="center">
-    <a href="https://github.com/DARKNEET69/TemplateEngineApp/releases/tag/0.0.1">
+    <a href="https://github.com/DARKNEET69/TemplateEngineApp/releases/tag/0.1.0">
       <img src="https://user-images.githubusercontent.com/63448832/208745193-99ccde9b-afb1-424b-832f-b8f1f69f0921.png"/>      
     </a>    
 </p>
