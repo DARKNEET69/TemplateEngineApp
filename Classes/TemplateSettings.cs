@@ -11,8 +11,8 @@ namespace TemplateEngineApp
 
         private string _inlineTemplateStart = "[[";
         private string _inlineTemplateEnd = "]]";
-        private string _inlineParametrStart = "{{";
-        private string _inlineParametrEnd = "}}";
+        private string _inlineParameterStart = "{{";
+        private string _inlineParameterEnd = "}}";
         private string _inlineLoopStart = "[{";
         private string _inlineLoopEnd = "}]";
 
@@ -46,11 +46,35 @@ namespace TemplateEngineApp
             }
         }
 
-        [Category("Paid version"), Description("Initial operand of the parametr inlining (min 2 symbols)")]
-        public string InlineParametrStart { get => _inlineParametrStart; }
+        [Category("Editable"), Description("Initial operand of the parametr inlining (min 2 symbols)")]
+        public string InlineParameterStart
+        {
+            get
+            {
+                return _inlineParameterStart;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value) || value.Length < 2 || value == _inlineParameterStart) return;
 
-        [Category("Paid version"), Description("Final operand of the parametr inlining (min 2 symbols)")]
-        public string InlineParametrEnd { get => _inlineParametrEnd; }
+                _inlineParameterStart = value;
+            }
+        }
+
+        [Category("Editable"), Description("Final operand of the parametr inlining (min 2 symbols)")]
+        public string InlineParameterEnd
+        {
+            get
+            {
+                return _inlineParameterEnd;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value) || value.Length < 2 || value == _inlineParameterEnd) return;
+
+                _inlineParameterEnd = value;
+            }
+        }
 
         [Category("Paid version"), Description("Initial operand of the loop inlining (min 2 symbols)")]
         public string InlineLoopStart { get => _inlineLoopStart; }
@@ -59,12 +83,12 @@ namespace TemplateEngineApp
         public string InlineLoopEnd { get => _inlineLoopEnd; }
 
         [Category("Not editable"), Description("Separation operand for inline parameters")]
-        public string InlineParameterSeparator { get; } = ";";
+        public string InlineParameterSeparator { get; } = ",";
 
         [Category("Not editable"), Description("Assignment operand for inline parameters")]
         public string InlineParameterAssignment { get; } = "=";
 
         [Category("Not editable"), Description("Non-template value operand for inline parameters")]
-        public string InlineParameterValue { get; } = "'";
+        public string InlineParameterValue { get; } = "\"";
     }
 }
