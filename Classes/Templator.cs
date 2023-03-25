@@ -32,36 +32,45 @@ namespace TemplateEngineApp
             for (int i = 0; i < filesPaths.Length; i++)
             {
                 Logger.Info($"Load '{filesPaths[i]}'");
-                string newContent = string.Empty;
+                string newFilePath = filesPaths[i].Replace(TemplateSettings.WorkspaceFolderName, TemplateSettings.WebsiteFolderName);
 
                 if (Path.GetExtension(filesPaths[i]) == ".html")
                 {
                     Logger.Info($"Templated file");
-                    newContent = InlineTemplates(File.ReadAllText(filesPaths[i]), templateDictionary, settings);
+
+                    try
+                    {
+                        if (!File.Exists(newFilePath)) Directory.CreateDirectory(newFilePath.Replace(Path.GetFileName(newFilePath), ""));
+
+                        using (FileStream fs = File.Create(newFilePath))
+                        {
+                            byte[] info = new UTF8Encoding(true).GetBytes(InlineTemplates(File.ReadAllText(filesPaths[i]), templateDictionary, settings));
+                            fs.Write(info, 0, info.Length);
+                        }
+
+                        Logger.Info($"Create file '{newFilePath}'");
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.Error($"Create file error: {e.Message}");
+                    }
                 }
                 else
                 {
                     Logger.Info($"Not templated file");
-                    newContent = File.ReadAllText(filesPaths[i]);
-                }
 
-                string newFilePath = filesPaths[i].Replace(TemplateSettings.WorkspaceFolderName, TemplateSettings.WebsiteFolderName);
-
-                try
-                {
-                    if (!File.Exists(newFilePath)) Directory.CreateDirectory(newFilePath.Replace(Path.GetFileName(newFilePath), ""));
-
-                    using (FileStream fs = File.Create(newFilePath))
+                    try
                     {
-                        byte[] info = new UTF8Encoding(true).GetBytes(newContent);
-                        fs.Write(info, 0, info.Length);
-                    }
+                        if (!File.Exists(newFilePath)) Directory.CreateDirectory(newFilePath.Replace(Path.GetFileName(newFilePath), ""));
 
-                    Logger.Info($"Create file '{newFilePath}'");
-                }
-                catch (Exception e)
-                {
-                    Logger.Error($"Create file error: {e.Message}");
+                        File.Copy(filesPaths[i], newFilePath);
+
+                        Logger.Info($"Copy file to '{newFilePath}'");
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.Error($"Copy file error: {e.Message}");
+                    }
                 }
             }
         }
