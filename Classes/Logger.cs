@@ -34,22 +34,22 @@
 
         public static void Info(string text)
         {
-            OnLogged?.Invoke($"[{DateTime.Now}] {text}" + Environment.NewLine, Type.Info);
+            OnLogged?.Invoke($"[{DateTime.Now}] [Info] {text}" + Environment.NewLine, Type.Info);
         }
 
         public static void Warning(string text)
         {
-            OnLogged?.Invoke($"[{DateTime.Now}] {text}" + Environment.NewLine, Type.Warning);
+            OnLogged?.Invoke($"[{DateTime.Now}] [Warning] {text}" + Environment.NewLine, Type.Warning);
         }
 
         public static void Error(string text)
         {
-            OnLogged?.Invoke($"[{DateTime.Now}] {text}" + Environment.NewLine, Type.Error);
+            OnLogged?.Invoke($"[{DateTime.Now}] [Error] {text}" + Environment.NewLine, Type.Error);
         }
 
         public static void Fatal(string text)
         {
-            OnLogged?.Invoke($"[{DateTime.Now}] {text}" + Environment.NewLine, Type.Fatal);
+            OnLogged?.Invoke($"[{DateTime.Now}] [Fatal] {text}" + Environment.NewLine, Type.Fatal);
         }
     }
 }
