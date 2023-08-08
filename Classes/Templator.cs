@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Text.RegularExpressions;
+using Microsoft.CodeAnalysis.CSharp.Scripting;
 
 namespace TemplateEngineApp
 {
@@ -79,8 +80,12 @@ namespace TemplateEngineApp
         {
             if (string.IsNullOrWhiteSpace(content)) return string.Empty;
 
-            content = string.Join(" ", Regex.Split(content, @"(?:\r\n|\n|\r)"));
-            content = Regex.Replace(content, @"\s+", " ");
+            if (settings.NeedToRemoveWhiteSpaces)
+            {
+                content = string.Join(" ", Regex.Split(content, @"(?:\r\n|\n|\r)"));
+                content = Regex.Replace(content, @"\s+", " ");
+            }
+
             string templateStart = string.Empty;
             string templateEnd = string.Empty;
 

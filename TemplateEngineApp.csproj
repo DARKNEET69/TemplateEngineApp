@@ -15,4 +15,8 @@
     <Content Include="Resources\tea-icon.ico" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.Scripting" Version="4.6.0" />
+  </ItemGroup>
+
 </Project>

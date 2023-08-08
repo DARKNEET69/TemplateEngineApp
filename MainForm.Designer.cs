@@ -47,6 +47,7 @@
             // 
             // splitContainer1
             // 
+            this.splitContainer1.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -109,52 +110,56 @@
             // 
             this.openButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.openButton.AutoSize = true;
+            this.openButton.BackColor = System.Drawing.Color.White;
             this.openButton.Location = new System.Drawing.Point(2, 30);
             this.openButton.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.openButton.Name = "openButton";
             this.openButton.Size = new System.Drawing.Size(271, 27);
             this.openButton.TabIndex = 3;
             this.openButton.Text = "Open project";
-            this.openButton.UseVisualStyleBackColor = true;
+            this.openButton.UseVisualStyleBackColor = false;
             this.openButton.Click += new System.EventHandler(this.openButton_Click);
             // 
             // createButton
             // 
             this.createButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.createButton.AutoSize = true;
+            this.createButton.BackColor = System.Drawing.Color.White;
             this.createButton.Location = new System.Drawing.Point(277, 30);
             this.createButton.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.createButton.Name = "createButton";
             this.createButton.Size = new System.Drawing.Size(271, 27);
             this.createButton.TabIndex = 3;
             this.createButton.Text = "Create project";
-            this.createButton.UseVisualStyleBackColor = true;
+            this.createButton.UseVisualStyleBackColor = false;
             this.createButton.Click += new System.EventHandler(this.createButton_Click);
             // 
             // generateButton
             // 
             this.generateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.generateButton.AutoSize = true;
+            this.generateButton.BackColor = System.Drawing.Color.White;
             this.generateButton.Location = new System.Drawing.Point(2, 63);
             this.generateButton.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.generateButton.Name = "generateButton";
             this.generateButton.Size = new System.Drawing.Size(271, 27);
             this.generateButton.TabIndex = 3;
             this.generateButton.Text = "Generate website";
-            this.generateButton.UseVisualStyleBackColor = true;
+            this.generateButton.UseVisualStyleBackColor = false;
             this.generateButton.Click += new System.EventHandler(this.generateButton_Click);
             // 
             // saveButton
             // 
             this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.saveButton.AutoSize = true;
+            this.saveButton.BackColor = System.Drawing.Color.White;
             this.saveButton.Location = new System.Drawing.Point(277, 63);
             this.saveButton.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(271, 27);
             this.saveButton.TabIndex = 3;
             this.saveButton.Text = "Save settings";
-            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.UseVisualStyleBackColor = false;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // consoleTextBox
@@ -170,7 +175,9 @@
             // 
             // propertyGrid
             // 
+            this.propertyGrid.BackColor = System.Drawing.Color.White;
             this.propertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid.HelpBackColor = System.Drawing.Color.White;
             this.propertyGrid.Location = new System.Drawing.Point(2, 3);
             this.propertyGrid.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.propertyGrid.Name = "propertyGrid";
@@ -182,7 +189,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(984, 461);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);

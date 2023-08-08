@@ -9,12 +9,44 @@ namespace TemplateEngineApp
         public static readonly string WorkspaceFolderName = "Workspace";
         public static readonly string TemplatesFolderName = "Templates";
 
+        private List<string> _extensionsOfEditableFiles = new List<string>() {".html"};
+        private bool _needToRemoveWhiteSpaces = false;
         private string _inlineTemplateStart = "[[";
         private string _inlineTemplateEnd = "]]";
         private string _inlineParameterStart = "{{";
         private string _inlineParameterEnd = "}}";
         private string _inlineLoopStart = "[{";
         private string _inlineLoopEnd = "}]";
+
+        [Category("Main"), Description("List of file extensions that the template engine will work with")]
+        public List<string> ExtensionsOfEditableFiles
+        {
+            get
+            {
+                return _extensionsOfEditableFiles;
+            }
+            set
+            {
+                if (value.Count == 0 || value == _extensionsOfEditableFiles) return;
+
+                _extensionsOfEditableFiles = value;
+            }
+        }
+
+        [Category("Main"), Description("If True, removes all spaces and line breaks in editable files")]
+        public bool NeedToRemoveWhiteSpaces
+        {
+            get
+            {
+                return _needToRemoveWhiteSpaces;
+            }
+            set
+            {
+                if (value == _needToRemoveWhiteSpaces) return;
+
+                _needToRemoveWhiteSpaces = value;
+            }
+        }
 
         [Category("Editable"), Description("Initial operand of the template inlining (min 2 symbols)")]
         public string InlineTemplateStart

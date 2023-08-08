@@ -1,8 +1,20 @@
 {
   "version": 2,
-  "dgSpecHash": "Aauta8KDJnFa+b0qine+sqxfcgJ/XpGQMA4NrPAHD1/doDFql0CsMRwuQ3Tplt0wPqZDfeG5mazHMm8AFitm0A==",
+  "dgSpecHash": "c8Y1M3Xk3wTNaa42wn4ZSZDxsKK+1sHq+Qva8UAD+fIlJ/HE/tJgcsWdOG7oYsswKR9WoLFpl+FCFYCFfVTr2A==",
   "success": true,
   "projectFilePath": "C:\\Users\\fierc\\OneDrive\\Рабочий стол\\PROJECTS\\GitHub\\TemplateEngineApp\\TemplateEngineApp.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\fierc\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.4\\microsoft.codeanalysis.analyzers.3.3.4.nupkg.sha512",
+    "C:\\Users\\fierc\\.nuget\\packages\\microsoft.codeanalysis.common\\4.6.0\\microsoft.codeanalysis.common.4.6.0.nupkg.sha512",
+    "C:\\Users\\fierc\\.nuget\\packages\\microsoft.codeanalysis.csharp\\4.6.0\\microsoft.codeanalysis.csharp.4.6.0.nupkg.sha512",
+    "C:\\Users\\fierc\\.nuget\\packages\\microsoft.codeanalysis.csharp.scripting\\4.6.0\\microsoft.codeanalysis.csharp.scripting.4.6.0.nupkg.sha512",
+    "C:\\Users\\fierc\\.nuget\\packages\\microsoft.codeanalysis.scripting\\4.6.0\\microsoft.codeanalysis.scripting.4.6.0.nupkg.sha512",
+    "C:\\Users\\fierc\\.nuget\\packages\\microsoft.codeanalysis.scripting.common\\4.6.0\\microsoft.codeanalysis.scripting.common.4.6.0.nupkg.sha512",
+    "C:\\Users\\fierc\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\fierc\\.nuget\\packages\\system.collections.immutable\\7.0.0\\system.collections.immutable.7.0.0.nupkg.sha512",
+    "C:\\Users\\fierc\\.nuget\\packages\\system.reflection.metadata\\7.0.0\\system.reflection.metadata.7.0.0.nupkg.sha512",
+    "C:\\Users\\fierc\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\fierc\\.nuget\\packages\\system.text.encoding.codepages\\7.0.0\\system.text.encoding.codepages.7.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
