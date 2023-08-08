@@ -35,7 +35,7 @@ namespace TemplateEngineApp
                 Logger.Info($"Load '{filesPaths[i]}'");
                 string newFilePath = filesPaths[i].Replace(TemplateSettings.WorkspaceFolderName, TemplateSettings.WebsiteFolderName);
 
-                if (Path.GetExtension(filesPaths[i]) == ".html")
+                if (settings.ExtensionsOfEditableFiles.Contains(Path.GetExtension(filesPaths[i])))
                 {
                     Logger.Info($"Templated file");
 
