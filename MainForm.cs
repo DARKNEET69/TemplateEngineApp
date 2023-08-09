@@ -4,67 +4,21 @@ namespace TemplateEngineApp
 {
     public partial class MainForm : Form
     {
+        TemplatorSettings templatorSettings = new TemplatorSettings();
         private string projectFolderPath = string.Empty;
-        TemplateSettings _projectSettings = new TemplateSettings();
-
-        private TemplateSettings projectSettings
-        {
-            get
-            {
-                if (propertyGrid.SelectedObject != null)
-                {
-                    _projectSettings.InlineTemplateStart = ((TemplateSettings)propertyGrid.SelectedObject).InlineTemplateStart;
-                    _projectSettings.InlineTemplateEnd = ((TemplateSettings)propertyGrid.SelectedObject).InlineTemplateEnd;
-                }
-
-                return _projectSettings;
-            }
-            set
-            {
-                propertyGrid.SelectedObject = _projectSettings = value;
-            }
-        }
+        private string oldAppFolderName = string.Empty;
+        private string oldWorkspaceFolderName = string.Empty;
+        private string oldTemplatesFolderName = string.Empty;
+        private bool isProjectFoldersChanged = false;
 
         public MainForm()
         {
             InitializeComponent();
             Logger.OnLogged += DisplayLog;
-            Logger.Info("Program start");
-            propertyGrid.Enabled = generateButton.Enabled = saveButton.Enabled = false;            
-        }
+            TemplatorSettings.OnSettingChanging += CheckChengedSettings;
 
-        private void openButton_Click(object sender, EventArgs e)
-        {
-            using (var folderBrowserDialog = new FolderBrowserDialog())
-            {
-                if (folderBrowserDialog.ShowDialog() == DialogResult.OK && !string.IsNullOrWhiteSpace(folderBrowserDialog.SelectedPath))
-                {
-                    if (CheckProject(folderBrowserDialog.SelectedPath)) LoadProject(folderBrowserDialog.SelectedPath);
-                }
-            }
-        }
-
-        private void createButton_Click(object sender, EventArgs e)
-        {
-            using (var folderBrowserDialog = new FolderBrowserDialog())
-            {
-                if (folderBrowserDialog.ShowDialog() == DialogResult.OK && !string.IsNullOrWhiteSpace(folderBrowserDialog.SelectedPath))
-                {
-                    if (!CheckProject(folderBrowserDialog.SelectedPath)) CreateProject(folderBrowserDialog.SelectedPath);
-                }
-            }
-        }
-
-        private void generateButton_Click(object sender, EventArgs e)
-        {
-            Logger.Info("Generate start");
-            Templator.Template(projectFolderPath, projectSettings);
-            Logger.Info("Generate complete!");
-        }
-
-        private void saveButton_Click(object sender, EventArgs e)
-        {
-            SaveSettings(projectFolderPath);
+            propertyGrid.Enabled = generateButton.Enabled = saveButton.Enabled = false;
+            Logger.Info("TEA launched");
         }
 
         private void LoadProject(string projectFolderPath)
@@ -73,17 +27,23 @@ namespace TemplateEngineApp
 
             try
             {
-                string settingsPath = projectFolderPath + "/" + TemplateSettings.SettingsFileName;
+                this.projectFolderPath = projectFolderPath;
+                string settingsPath = $"{projectFolderPath}/{TemplatorSettings.SettingsFileName}";
 
-                using (FileStream fs = new FileStream(settingsPath, FileMode.OpenOrCreate))
+                using (FileStream fileStream = new FileStream(settingsPath, FileMode.OpenOrCreate))
                 {
-                    TemplateSettings? settings = JsonSerializer.Deserialize<TemplateSettings>(fs);
-                    projectSettings = settings == null ? new TemplateSettings() : settings;
+                    TemplatorSettings? newTemplatorSettings = JsonSerializer.Deserialize<TemplatorSettings>(fileStream);
+                    templatorSettings = newTemplatorSettings == null ? templatorSettings : newTemplatorSettings;
+                    propertyGrid.SelectedObject = templatorSettings;
+                    oldAppFolderName = templatorSettings.AppFolderName;
+                    oldWorkspaceFolderName = templatorSettings.WorkspaceFolderName;
+                    oldTemplatesFolderName = templatorSettings.TemplatesFolderName;
                 }
 
                 projectNameLabel.Text = Path.GetFileName(Path.GetDirectoryName(projectFolderPath + "/"));
                 propertyGrid.Enabled = generateButton.Enabled = saveButton.Enabled = true;
                 Logger.Info("Project settings loaded");
+                CheckProjectFiles(projectFolderPath);
             }
             catch (Exception e)
             {
@@ -97,15 +57,14 @@ namespace TemplateEngineApp
 
             try
             {
-                string settingsPath = projectFolderPath + "/" + TemplateSettings.SettingsFileName;
-
-                Directory.CreateDirectory(projectFolderPath + "/" + TemplateSettings.WebsiteFolderName);
-                Directory.CreateDirectory(projectFolderPath + "/" + TemplateSettings.WorkspaceFolderName);
-                Directory.CreateDirectory(projectFolderPath + "/" + TemplateSettings.TemplatesFolderName);
+                templatorSettings = new TemplatorSettings();
+                string settingsPath = $"{projectFolderPath}/{TemplatorSettings.SettingsFileName}";
+                Directory.CreateDirectory($"{projectFolderPath}/{templatorSettings.AppFolderName}");
+                Directory.CreateDirectory($"{projectFolderPath}/{templatorSettings.WorkspaceFolderName}");
+                Directory.CreateDirectory($"{projectFolderPath}/{templatorSettings.TemplatesFolderName}");
                 SaveSettings(projectFolderPath);
-                projectNameLabel.Text = Path.GetFileName(Path.GetDirectoryName(projectFolderPath + "/"));
-                propertyGrid.Enabled = generateButton.Enabled = saveButton.Enabled = true;
                 Logger.Info("Project files have been created");
+                LoadProject(projectFolderPath);
             }
             catch (Exception e)
             {
@@ -113,22 +72,21 @@ namespace TemplateEngineApp
             }
         }
 
-        private bool CheckProject(string projectFolderPath)
+        private bool CheckProjectFiles(string projectFolderPath)
         {
+            if (!Directory.Exists(projectFolderPath)) return false;
+
             Logger.Info("Checking project folder");
 
-            if (Directory.Exists(projectFolderPath) && File.Exists(projectFolderPath + "/" + TemplateSettings.SettingsFileName) &&
-                Directory.Exists(projectFolderPath + "/" + TemplateSettings.WebsiteFolderName) && 
-                Directory.Exists(projectFolderPath + "/" + TemplateSettings.WorkspaceFolderName) &&
-                Directory.Exists(projectFolderPath + "/" + TemplateSettings.TemplatesFolderName))
+            if (Directory.Exists($"{projectFolderPath}/{templatorSettings.AppFolderName}") && 
+                Directory.Exists($"{projectFolderPath}/{templatorSettings.WorkspaceFolderName}") &&
+                Directory.Exists($"{projectFolderPath}/{templatorSettings.TemplatesFolderName}"))
             {
-                this.projectFolderPath = projectFolderPath;
-                Logger.Warning("Folder contains project files");
+                Logger.Info("Folder contains project files");
                 return true;
             }
             else
             {
-                projectNameLabel.Text = "Project not found";
                 Logger.Warning("Folder does not contain project files");
                 return false;
             }
@@ -144,16 +102,38 @@ namespace TemplateEngineApp
 
             try
             {
-                using (FileStream fs = new FileStream(path + "/" + TemplateSettings.SettingsFileName, FileMode.OpenOrCreate))
+                if (isProjectFoldersChanged)
                 {
-                    JsonSerializer.Serialize<TemplateSettings>(fs, projectSettings, new JsonSerializerOptions() { WriteIndented = true });
-                    Logger.Info("Settings save complete");
+                    RenameFolder(templatorSettings.AppFolderName, oldAppFolderName);
+                    RenameFolder(templatorSettings.WorkspaceFolderName, oldWorkspaceFolderName);
+                    RenameFolder(templatorSettings.TemplatesFolderName, oldTemplatesFolderName);
                 }
+
+                void RenameFolder(string newName, string oldName)
+                {
+                    var directory = new DirectoryInfo($"{projectFolderPath}/{oldName}");
+                    directory.MoveTo($"{projectFolderPath}/_{oldName}_");
+                    directory.MoveTo($"{projectFolderPath}/{newName}");
+                }
+
+                using (FileStream fileStream = new FileStream($"{path}/{TemplatorSettings.SettingsFileName}", FileMode.Create))
+                {
+                    JsonSerializer.Serialize<TemplatorSettings>(fileStream, templatorSettings, new JsonSerializerOptions() { WriteIndented = true });
+                }
+
+                Logger.Info("Settings save complete");
             }
             catch(Exception e)
             {
                 Logger.Error("Settings save error: " + e.Message);
             }
+        }
+
+        private void CheckChengedSettings(string propertyName, object newValue, object oldValue)
+        {
+            string[] checkedProperties = { "AppFolderName", "WorkspaceFolderName", "TemplatesFolderName" };
+
+            if (checkedProperties.Contains(propertyName)) isProjectFoldersChanged = true;
         }
 
         private void DisplayLog(string text, Logger.Type logType)
@@ -177,5 +157,43 @@ namespace TemplateEngineApp
             consoleTextBox.AppendText(text);
             consoleTextBox.ScrollToCaret();
         }
+
+        #region UI events
+
+        private void openButton_Click(object sender, EventArgs e)
+        {
+            using (var folderBrowserDialog = new FolderBrowserDialog())
+            {
+                if (folderBrowserDialog.ShowDialog() == DialogResult.OK && !string.IsNullOrWhiteSpace(folderBrowserDialog.SelectedPath))
+                {
+                    LoadProject(folderBrowserDialog.SelectedPath);
+                }
+            }
+        }
+
+        private void createButton_Click(object sender, EventArgs e)
+        {
+            using (var folderBrowserDialog = new FolderBrowserDialog())
+            {
+                if (folderBrowserDialog.ShowDialog() == DialogResult.OK && !string.IsNullOrWhiteSpace(folderBrowserDialog.SelectedPath))
+                {
+                    if (!CheckProjectFiles(folderBrowserDialog.SelectedPath)) CreateProject(folderBrowserDialog.SelectedPath);
+                }
+            }
+        }
+
+        private void generateButton_Click(object sender, EventArgs e)
+        {
+            Logger.Info("Generate start");
+            Templator.Template(projectFolderPath, templatorSettings);
+            Logger.Info("Generate complete!");
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            SaveSettings(projectFolderPath);
+        }
+
+        #endregion
     }
 }

@@ -2,21 +2,71 @@
 
 namespace TemplateEngineApp
 {
-    internal class TemplateSettings
+    internal class TemplatorSettings
     {
-        public static readonly string SettingsFileName = "TemplateSettings.json";
-        public static readonly string WebsiteFolderName = "Website";
-        public static readonly string WorkspaceFolderName = "Workspace";
-        public static readonly string TemplatesFolderName = "Templates";
+        public delegate void SettingsEventHandler(string propertyName, object newValue, object oldValue);
+        public static event SettingsEventHandler? OnSettingChanging;
+        public static readonly string SettingsFileName = "settings.json";
 
-        private List<string> _extensionsOfEditableFiles = new List<string>() {".html"};
+        private List<string> _extensionsOfEditableFiles = new List<string>() { ".html" };
         private bool _needToRemoveWhiteSpaces = false;
+        private string _appFolderName = "app";
+        private string _workspaceFolderName = "workspace";
+        private string _templatesFolderName = "templates";
         private string _inlineTemplateStart = "[[";
         private string _inlineTemplateEnd = "]]";
         private string _inlineParameterStart = "{{";
         private string _inlineParameterEnd = "}}";
-        private string _inlineLoopStart = "[{";
-        private string _inlineLoopEnd = "}]";
+        //private string _inlineLoopStart = "[{";
+        //private string _inlineLoopEnd = "}]";
+
+        [Category("Main"), Description("The name of the folder where the working project will be saved")]
+        public string AppFolderName
+        {
+            get
+            {
+                return _appFolderName;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value) || value == _appFolderName) return;
+
+                OnSettingChanging?.Invoke("AppFolderName", value, _appFolderName);
+                _appFolderName = value;
+            }
+        }
+
+        [Category("Main"), Description("The name of the folder where the working files containing templates will be stored")]
+        public string WorkspaceFolderName
+        {
+            get
+            {
+                return _workspaceFolderName;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value) || value == _workspaceFolderName) return;
+
+                OnSettingChanging?.Invoke("WorkspaceFolderName", value, _workspaceFolderName);
+                _workspaceFolderName = value;
+            }
+        }
+
+        [Category("Main"), Description("The name of the folder where the templates will be stored")]
+        public string TemplatesFolderName
+        {
+            get
+            {
+                return _templatesFolderName;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value) || value == _templatesFolderName) return;
+
+                OnSettingChanging?.Invoke("TemplatesFolderName", value, _templatesFolderName);
+                _templatesFolderName = value;
+            }
+        }
 
         [Category("Main"), Description("List of file extensions that the template engine will work with")]
         public List<string> ExtensionsOfEditableFiles
@@ -108,19 +158,19 @@ namespace TemplateEngineApp
             }
         }
 
-        [Category("Paid version"), Description("Initial operand of the loop inlining (min 2 symbols)")]
-        public string InlineLoopStart { get => _inlineLoopStart; }
-
-        [Category("Paid version"), Description("Final operand of the loop inlining (min 2 symbols)")]
-        public string InlineLoopEnd { get => _inlineLoopEnd; }
-
         [Category("Not editable"), Description("Separation operand for inline parameters")]
         public string InlineParameterSeparator { get; } = ",";
 
         [Category("Not editable"), Description("Assignment operand for inline parameters")]
         public string InlineParameterAssignment { get; } = "=";
 
-        [Category("Not editable"), Description("Non-template value operand for inline parameters")]
-        public string InlineParameterValue { get; } = "\"";
+        //[Category("Paid version"), Description("Initial operand of the loop inlining (min 2 symbols)")]
+        //public string InlineLoopStart { get => _inlineLoopStart; }
+
+        //[Category("Paid version"), Description("Final operand of the loop inlining (min 2 symbols)")]
+        //public string InlineLoopEnd { get => _inlineLoopEnd; }
+
+        //[Category("Not editable"), Description("Non-template value operand for inline parameters")]
+        //public string InlineParameterValue { get; } = "\"";
     }
 }

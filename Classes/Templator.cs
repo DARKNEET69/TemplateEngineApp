@@ -6,11 +6,11 @@ namespace TemplateEngineApp
 {
     internal class Templator
     {
-        public static void Template(string projectPath, TemplateSettings settings)
+        public static void Template(string projectPath, TemplatorSettings settings)
         {
             var templateDictionary = new Dictionary<string, string>();
-            var filesPaths = Directory.GetFiles(projectPath + "/" + TemplateSettings.WorkspaceFolderName, "*.*", SearchOption.AllDirectories);
-            DirectoryInfo di = new DirectoryInfo(projectPath + "/" + TemplateSettings.WebsiteFolderName);
+            var filesPaths = Directory.GetFiles($"{projectPath}/{settings.WorkspaceFolderName}", "*.*", SearchOption.AllDirectories);
+            DirectoryInfo di = new DirectoryInfo($"{projectPath}/{settings.AppFolderName}");
 
             foreach (FileInfo file in di.GetFiles())
             {
@@ -22,10 +22,10 @@ namespace TemplateEngineApp
                 dir.Delete(true);
             }
 
-            foreach (var templatePath in Directory.GetFiles(projectPath + "/" + TemplateSettings.TemplatesFolderName, "*.*", SearchOption.AllDirectories))
+            foreach (var templatePath in Directory.GetFiles($"{projectPath}/{settings.TemplatesFolderName}", "*.*", SearchOption.AllDirectories))
             {
                 string content = File.ReadAllText(templatePath);
-                string path = templatePath.Replace(projectPath + "/", "").Replace("\\", "/");
+                string path = templatePath.Replace($"{projectPath}/{settings.TemplatesFolderName}\\", "").Replace("\\", "/");
 
                 templateDictionary.Add(path, content);
             }
@@ -33,7 +33,7 @@ namespace TemplateEngineApp
             for (int i = 0; i < filesPaths.Length; i++)
             {
                 Logger.Info($"Load '{filesPaths[i]}'");
-                string newFilePath = filesPaths[i].Replace(TemplateSettings.WorkspaceFolderName, TemplateSettings.WebsiteFolderName);
+                string newFilePath = filesPaths[i].Replace(settings.WorkspaceFolderName, settings.AppFolderName);
 
                 if (settings.ExtensionsOfEditableFiles.Contains(Path.GetExtension(filesPaths[i])))
                 {
@@ -76,7 +76,7 @@ namespace TemplateEngineApp
             }
         }
 
-        private static string InlineTemplates(string content, Dictionary<string, string> parameters, TemplateSettings settings, InlineType inlineType = InlineType.Block)
+        private static string InlineTemplates(string content, Dictionary<string, string> parameters, TemplatorSettings settings, InlineType inlineType = InlineType.Block)
         {
             if (string.IsNullOrWhiteSpace(content)) return string.Empty;
 
@@ -182,11 +182,11 @@ namespace TemplateEngineApp
 
         private static string GetStringExpression(string text)
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder stringBuilder = new StringBuilder();
 
-            for (int i = 0; i < text.Length; i++) sb.Append(@"\" + text[i]);
+            for (int i = 0; i < text.Length; i++) stringBuilder.Append(@"\" + text[i]);
 
-            return sb.ToString();
+            return stringBuilder.ToString();
 
         }
 
